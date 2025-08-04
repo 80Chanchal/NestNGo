@@ -1,0 +1,96 @@
+
+<% layout("layouts/boilerplate") -%>
+<body>
+
+    <div class="row">
+        <div class="col-8 offset-2" >
+            <br>
+    <h3>Create new Listing</h3>
+    <form action="/listings" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" name="listing[title]" placeholder="Enter the title" class="form-control" required>
+             <div class="invalid-feedback">Please choose valid title</div>
+        </div>
+        
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea type="text" name="listing[description]" placeholder="Enter the description" class="form-control" required></textarea>
+             <div class="invalid-feedback">Please enter short description</div>
+        </div>
+         
+         <div class="mb-3">
+            <label for="image" class="form-label"> Upload Listing Image</label>
+            <input type="file" name="listing[image]" placeholder="Enter the image/URL" class="form-control">
+            required
+        </div>
+
+        <div class="row">
+            <div class="mb-3 col-md-4">
+                <label for="price" class="form-label">Price</label>
+                <input  name="listing[price]" placeholder="Enter the price" class="form-control" required>
+                <div class="invalid-feedback">Price should be valid</div>
+            </div>
+         
+             <div class="mb-3 col-md-8">
+                <label for="location" class="form-label">Location</label>
+                <input type="text" name="listing[location]" placeholder="Enter the location" class="form-control" required>
+                 <div class="invalid-feedback">Please enter valid location</div>
+                 <div class="valid-feedback">Looks good!</div>
+
+             </div>
+        </div>
+        
+        <!-- Exact Location Coordinates -->
+        <div class="row">
+            <div class="mb-3 col-md-6">
+                <label for="latitude" class="form-label">Latitude</label>
+                <input type="number" step="any" name="listing[latitude]" placeholder="e.g., 20.5937" class="form-control" required>
+                <div class="invalid-feedback">Please enter valid latitude</div>
+                <small class="form-text text-muted">Enter the exact latitude coordinate (e.g., 20.5937 for India)</small>
+            </div>
+         
+            <div class="mb-3 col-md-6">
+                <label for="longitude" class="form-label">Longitude</label>
+                <input type="number" step="any" name="listing[longitude]" placeholder="e.g., 78.9629" class="form-control" required>
+                <div class="invalid-feedback">Please enter valid longitude</div>
+                <small class="form-text text-muted">Enter the exact longitude coordinate (e.g., 78.9629 for India)</small>
+            </div>
+        </div>
+        
+        <div class="mb-3">
+             <label for="country" class="form-label">Country</label>
+             <!-- <input type="text" name="listing[country]" placeholder="Enter the country" class="form-select"> -->
+             <select name="listing[country]" id="country" class="form-select" required>
+                        <option value="" disabled selected>Select the Country</option>
+                        <option value="India">India</option>
+                        <option value="United States">United States</option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Germany">Germany</option>
+                        <option value="France">France</option>
+                        <option value="Japan">Japan</option>
+                        <option value="China">China</option>
+                        <option value="Brazil">Brazil</option>
+                        <option value="South Africa">South Africa</option>
+                        <option value="Russia">Russia</option>
+                        <option value="Mexico">Mexico</option>
+                        <option value="Italy">Italy</option>
+                        <option value="Nepal">Nepal</option>
+                        <option value="Pakistan">Pakistan</option>
+                        <option value="Bangladesh">Bangladesh</option>
+                        <option value="Sri Lanka">Sri Lanka</option>
+                        <option value="New Zealand">New Zealand</option>
+                        <option value="Singapore">Singapore</option>
+                        <option value="UAE">United Arab Emirates</option>
+                        
+                    </select>
+                     <div class="invalid-feedback">Please choose valid Country</div>
+        </div>
+        <button class="btn btn-dark mb-3">Add</button>
+    </form>
+    
+    </div>
+</div>
+

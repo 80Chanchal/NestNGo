@@ -1,0 +1,166 @@
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+}
+.container{
+    flex: 1;
+    
+}
+/* Navbar */
+.navbar {
+    height: 5rem;
+    background-color: white;
+}
+.fa-compass{
+    color: rgb(171, 16, 228);
+    font-size: 2rem;
+}
+.nav-link{
+    color: black !important;
+
+}
+
+.f-info-links a{
+    text-decoration: none;
+    color: black;
+
+}
+.f-info-links a:hover{
+    text-decoration: underline;
+    color: black;
+
+}
+.f-info-links,.f-info-socials,.f-info-brand{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.f-info-socials i{
+    font-size:1.2rem;
+    margin-right: 1.2rem;
+}
+.f-info{
+    text-align: center;
+    display: flex;
+    height: 5rem;
+    background-color: #ebebeb;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: space-evenly;
+}
+.review-card {
+      
+      border: 1px solid #9c9292;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content:space-between;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+     
+    }
+
+.card-title {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+.card-text {
+      flex-grow: 1;
+
+    }
+
+.rating {
+      font-size: 16px;
+      text-align: left;
+      margin: 0;
+    }
+
+.card-body{
+    background-color:  white;  /*rgb(233, 229, 224);*/
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+} 
+
+.card:hover{
+   box-shadow: 3px 6px 8px rgb(80, 77, 77);
+    transition: box-shadow 1s ease 0.4s;
+}
+.card-text, .rating {
+      margin: 0;
+    }
+
+
+/* Card Effect:- when we hover on card then the it seems like lightly whity effect as like a clickable effect
+also use <div class="card-img-overlay">abcd</div>
+it will show the text on image using overlay property
+*/
+
+.card-img-overlay{
+    background-color:white;
+    opacity:0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+
+}
+.card-img-overlay:hover{
+    opacity:0.2;
+   
+}
+
+/* .btn{
+    background-color: rgb(149, 7, 201) !important ;
+    color: black !important;
+    
+    
+} */
+.btn:hover{
+    background-color: brown !important;
+    transition:background-color 1s ease 0s;
+   
+}
+.btn-warning{
+    background-color:#d61212 !important;
+    color: rgb(255, 255, 255) !important;
+}
+.btn-outline-dark{
+    background-color: #ffffff !important;
+}
+.error-container {
+    max-width: 600px;
+    margin: 100px auto;
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.error-container h1 {
+    color: #dc3545;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.error-container p {
+    color: #6c757d;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.error-container a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.error-container a:hover {
+    background-color: #0056b3;
+}
