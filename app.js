@@ -26,17 +26,17 @@ const userRouter = require("./routes/user.js");
 
 //const MONGO_URL="mongodb://127.0.0.1:27017/nestNgo";
 
-const dbUrl=process.env.ATLAS_DB_URL;
-
+const dbUrl = process.env.NODE_ENV === "production" 
+    ? process.env.ATLAS_DB_URL 
+    : "mongodb://127.0.0.1:27017/nestNgo";
 
 mongoose.connect(dbUrl, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
     serverSelectionTimeoutMS: 10000, // optional: timeout after 10s
 }).then(() => {
     console.log('MongoDB connected');
 }).catch((err) => {
     console.error('MongoDB connection error:', err);
+    console.log('Please check your MongoDB connection or install MongoDB locally');
 });
 
 
@@ -49,7 +49,7 @@ app.engine("ejs",ejsMate);
 app.use(express.static(path.join(__dirname,"/public")));
 
 const store= MongoStore.create({
-    mongoUrl:dbUrl,
+    mongoUrl: dbUrl,
     crypto:{
         secret:process.env.SECRET,
     },

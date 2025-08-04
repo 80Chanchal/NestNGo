@@ -1,106 +1,108 @@
 
 <% layout("layouts/boilerplate") -%>
 
-    <div class="row">
-        <div class="col-8 offset-2">
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <br>
+            <h3>Edit your Listing</h3>
+            <form method="post" action="/listings/<%=listing._id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
+            
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" name="listing[title]" value="<%=listing.title %>" class="form-control" required/>
+                <div class="invalid-feedback">Please choose valid title</div>
+
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea name="listing[description]" class="form-control" required><%= listing.description %></textarea>
+                <div class="invalid-feedback">Please enter short description</div>
+
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Original Image</label>
+                <div class="border rounded p-2 bg-light">
+                    <img src="<%=originalImage %>" 
+                         alt="Original listing image" 
+                         style="max-width: 100%; max-height: 150px; object-fit: cover; border-radius: 4px;"
+                         class="img-thumbnail img-fluid">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label"> Upload New Image</label>
+                <input type="file" name="listing[image]" class="form-control">
+                <div class="invalid-feedback">Please enter valid image</div>
+
+            </div>
+
+            <div class="row">
+                <div class="mb-3 col-12 col-md-4">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="number" name="listing[price]"  value="<%=listing.price%>" class="form-control" required>
+                    <div class="invalid-feedback">Price should be valid</div>
+
+                </div>
+             
+                <div class="mb-3 col-12 col-md-8">
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" name="listing[location]"  value="<%=listing.location%>" class="form-control" required>
+                    <div class="invalid-feedback">Please enter valid location</div>
+                </div>
+            </div>
+
+            <!-- Exact Location Coordinates -->
+            <div class="row">
+                <div class="mb-3 col-12 col-md-6">
+                    <label for="latitude" class="form-label">Latitude</label>
+                    <input type="number" step="any" name="listing[latitude]" value="<%=listing.latitude || ''%>" placeholder="e.g., 20.5937" class="form-control" required>
+                    <div class="invalid-feedback">Please enter valid latitude</div>
+                    <small class="form-text text-muted">Enter the exact latitude coordinate (e.g., 20.5937 for India)</small>
+                </div>
+             
+                <div class="mb-3 col-12 col-md-6">
+                    <label for="longitude" class="form-label">Longitude</label>
+                    <input type="number" step="any" name="listing[longitude]" value="<%=listing.longitude || ''%>" placeholder="e.g., 78.9629" class="form-control" required>
+                    <div class="invalid-feedback">Please enter valid longitude</div>
+                    <small class="form-text text-muted">Enter the exact longitude coordinate (e.g., 78.9629 for India)</small>
+                </div>
+            </div>
+
+            <div>
+                <label for="country" class="form-label">Country</label>
+                <!-- <input type="text" name="listing[country]"  value="<%=listing.country%>"> -->
+                <select name="listing[country]" id="country" class="form-select" required>
+                    <option disabled <%= listing.country ? '' : 'selected' %>>Select the Country</option>
+                    <option value="India" <%= listing.country === 'India' ? 'selected' : '' %>>India</option>
+                    <option value="United States" <%= listing.country === 'United States' ? 'selected' : '' %>>United States</option>
+                    <option value="United Kingdom" <%= listing.country === 'United Kingdom' ? 'selected' : '' %>>United Kingdom</option>
+                    <option value="Canada" <%= listing.country === 'Canada' ? 'selected' : '' %>>Canada</option>
+                    <option value="Australia" <%= listing.country === 'Australia' ? 'selected' : '' %>>Australia</option>
+                    <option value="Germany" <%= listing.country === 'Germany' ? 'selected' : '' %>>Germany</option>
+                    <option value="France" <%= listing.country === 'France' ? 'selected' : '' %>>France</option>
+                    <option value="Japan" <%= listing.country === 'Japan' ? 'selected' : '' %>>Japan</option>
+                    <option value="China" <%= listing.country === 'China' ? 'selected' : '' %>>China</option>
+                    <option value="Brazil" <%= listing.country === 'Brazil' ? 'selected' : '' %>>Brazil</option>
+                    <option value="South Africa" <%= listing.country === 'South Africa' ? 'selected' : '' %>>South Africa</option>
+                    <option value="Russia" <%= listing.country === 'Russia' ? 'selected' : '' %>>Russia</option>
+                    <option value="Mexico" <%= listing.country === 'Mexico' ? 'selected' : '' %>>Mexico</option>
+                    <option value="Italy" <%= listing.country === 'Italy' ? 'selected' : '' %>>Italy</option>
+                    <option value="Nepal" <%= listing.country === 'Nepal' ? 'selected' : '' %>>Nepal</option>
+                    <option value="Pakistan" <%= listing.country === 'Pakistan' ? 'selected' : '' %>>Pakistan</option>
+                    <option value="Bangladesh" <%= listing.country === 'Bangladesh' ? 'selected' : '' %>>Bangladesh</option>
+                    <option value="Sri Lanka" <%= listing.country === 'Sri Lanka' ? 'selected' : '' %>>Sri Lanka</option>
+                    <option value="New Zealand" <%= listing.country === 'New Zealand' ? 'selected' : '' %>>New Zealand</option>
+                    <option value="Singapore" <%= listing.country === 'Singapore' ? 'selected' : '' %>>Singapore</option>
+                    <option value="UAE" <%= listing.country === 'UAE' ? 'selected' : '' %>>United Arab Emirates</option>
+                </select>
+                <div class="invalid-feedback">Please choose valid country</div>
+            </div>
             <br>
-        <h3>Edit your Listing</h3>
-        <form method="post" action="/listings/<%=listing._id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
-        
-        <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
-            <input type="text" name="listing[title]" value="<%=listing.title %>" class="form-control" required/>
-            <div class="invalid-feedback">Please choose valid title</div>
-
-        </div>
-
-        <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
-            <textarea name="listing[description]" class="form-control" required><%= listing.description %></textarea>
-            <div class="invalid-feedback">Please enter short description</div>
-
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Original Image</label>
-            <div class="border rounded p-2 bg-light">
-                <img src="<%=originalImage %>" 
-                     alt="Original listing image" 
-                     style="max-width: 200px; max-height: 150px; object-fit: cover; border-radius: 4px;"
-                     class="img-thumbnail">
+                <button class="btn btn-dark mb-3">Edit</button>
+             </form>
             </div>
-        </div>
-
-        <div class="mb-3">
-            <label for="image" class="form-label"> Upload New Image</label>
-            <input type="file" name="listing[image]" class="form-control">
-            <div class="invalid-feedback">Please enter valid image</div>
-
-        </div>
-
-        <div class="row">
-            <div class="mb-3 col-md-4">
-                <label for="price" class="form-label">Price</label>
-                <input type="number" name="listing[price]"  value="<%=listing.price%>" class="form-control" required>
-                <div class="invalid-feedback">Price should be valid</div>
-
-            </div>
-         
-            <div class="mb-3 col-md-8">
-                <label for="location" class="form-label">Location</label>
-                <input type="text" name="listing[location]"  value="<%=listing.location%>" class="form-control" required>
-                <div class="invalid-feedback">Please enter valid location</div>
-            </div>
-        </div>
-
-        <!-- Exact Location Coordinates -->
-        <div class="row">
-            <div class="mb-3 col-md-6">
-                <label for="latitude" class="form-label">Latitude</label>
-                <input type="number" step="any" name="listing[latitude]" value="<%=listing.latitude || ''%>" placeholder="e.g., 20.5937" class="form-control" required>
-                <div class="invalid-feedback">Please enter valid latitude</div>
-                <small class="form-text text-muted">Enter the exact latitude coordinate (e.g., 20.5937 for India)</small>
-            </div>
-         
-            <div class="mb-3 col-md-6">
-                <label for="longitude" class="form-label">Longitude</label>
-                <input type="number" step="any" name="listing[longitude]" value="<%=listing.longitude || ''%>" placeholder="e.g., 78.9629" class="form-control" required>
-                <div class="invalid-feedback">Please enter valid longitude</div>
-                <small class="form-text text-muted">Enter the exact longitude coordinate (e.g., 78.9629 for India)</small>
-            </div>
-        </div>
-
-        <div>
-            <label for="country" class="form-label">Country</label>
-            <!-- <input type="text" name="listing[country]"  value="<%=listing.country%>"> -->
-            <select name="listing[country]" id="country" class="form-select" required>
-                <option disabled <%= listing.country ? '' : 'selected' %>>Select the Country</option>
-                <option value="India" <%= listing.country === 'India' ? 'selected' : '' %>>India</option>
-                <option value="United States" <%= listing.country === 'United States' ? 'selected' : '' %>>United States</option>
-                <option value="United Kingdom" <%= listing.country === 'United Kingdom' ? 'selected' : '' %>>United Kingdom</option>
-                <option value="Canada" <%= listing.country === 'Canada' ? 'selected' : '' %>>Canada</option>
-                <option value="Australia" <%= listing.country === 'Australia' ? 'selected' : '' %>>Australia</option>
-                <option value="Germany" <%= listing.country === 'Germany' ? 'selected' : '' %>>Germany</option>
-                <option value="France" <%= listing.country === 'France' ? 'selected' : '' %>>France</option>
-                <option value="Japan" <%= listing.country === 'Japan' ? 'selected' : '' %>>Japan</option>
-                <option value="China" <%= listing.country === 'China' ? 'selected' : '' %>>China</option>
-                <option value="Brazil" <%= listing.country === 'Brazil' ? 'selected' : '' %>>Brazil</option>
-                <option value="South Africa" <%= listing.country === 'South Africa' ? 'selected' : '' %>>South Africa</option>
-                <option value="Russia" <%= listing.country === 'Russia' ? 'selected' : '' %>>Russia</option>
-                <option value="Mexico" <%= listing.country === 'Mexico' ? 'selected' : '' %>>Mexico</option>
-                <option value="Italy" <%= listing.country === 'Italy' ? 'selected' : '' %>>Italy</option>
-                <option value="Nepal" <%= listing.country === 'Nepal' ? 'selected' : '' %>>Nepal</option>
-                <option value="Pakistan" <%= listing.country === 'Pakistan' ? 'selected' : '' %>>Pakistan</option>
-                <option value="Bangladesh" <%= listing.country === 'Bangladesh' ? 'selected' : '' %>>Bangladesh</option>
-                <option value="Sri Lanka" <%= listing.country === 'Sri Lanka' ? 'selected' : '' %>>Sri Lanka</option>
-                <option value="New Zealand" <%= listing.country === 'New Zealand' ? 'selected' : '' %>>New Zealand</option>
-                <option value="Singapore" <%= listing.country === 'Singapore' ? 'selected' : '' %>>Singapore</option>
-                <option value="UAE" <%= listing.country === 'UAE' ? 'selected' : '' %>>United Arab Emirates</option>
-            </select>
-            <div class="invalid-feedback">Please choose valid country</div>
-        </div>
-        <br>
-            <button class="btn btn-dark mb-3">Edit</button>
-         </form>
         </div>
     </div> 
     
